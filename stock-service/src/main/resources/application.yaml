@@ -24,6 +24,7 @@ spring:
           mode: none
 
 
+
 eureka:
   client:
     serviceUrl:
