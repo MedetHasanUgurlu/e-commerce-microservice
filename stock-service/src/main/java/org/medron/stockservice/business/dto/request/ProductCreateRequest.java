@@ -1,8 +1,8 @@
 package org.medron.stockservice.business.dto.request;
 
 import lombok.*;
-
-import java.util.UUID;
+import org.medron.stockservice.entity.Category;
+import java.util.List;
 
 @Getter
 @Setter
@@ -10,7 +10,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductCreateRequest implements ProductRequest{
-    private UUID categoryId;
+
+    private List<Category> categories;
     private String name;
     private int stockQuantity;
     private double unitPrice;

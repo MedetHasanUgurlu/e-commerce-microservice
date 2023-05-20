@@ -2,9 +2,7 @@ package org.medron.stockservice.business.dto.response;
 
 
 import lombok.*;
-import org.medron.stockservice.entity.Product;
 
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -12,9 +10,12 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoryResponse {
+public class ProductGetResponse {
     private UUID id;
     private String name;
-    private Set<Product> products;
-
+    private int stockQuantity;
+    private double unitPrice;
+    private boolean status;
+    private String description;
+    private UUID categoryId;
 }
