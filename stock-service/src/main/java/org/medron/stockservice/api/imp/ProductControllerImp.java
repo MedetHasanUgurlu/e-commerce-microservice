@@ -6,37 +6,50 @@ import org.medron.stockservice.business.dto.request.ProductCreateRequest;
 import org.medron.stockservice.business.dto.request.ProductUpdateRequest;
 import org.medron.stockservice.business.dto.response.ProductGetAllResponse;
 import org.medron.stockservice.business.dto.response.ProductGetResponse;
+import org.medron.stockservice.business.service.ProductService;
+import org.medron.stockservice.repository.ProductRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/product")
 public class ProductControllerImp implements ProductController {
+    private final ProductService service;
     @Override
-    public ResponseEntity<Void> add(ProductCreateRequest request) {
-        return null;
+    @PostMapping
+    public ResponseEntity<Void> add(@RequestBody ProductCreateRequest request) {
+        service.add(request);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<Void> delete(UUID id) {
-        return null;
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Void> update(UUID id, ProductUpdateRequest request) {
-        return null;
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@PathVariable Long id,@RequestBody ProductUpdateRequest request) {
+        service.update(id,request);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
+    @GetMapping
     public ResponseEntity<List<ProductGetAllResponse>> getAll() {
-        return null;
+        return new ResponseEntity<>(service.getAll(),HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<ProductGetResponse> get(UUID id) {
-        return null;
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductGetResponse> get(@PathVariable Long id) {
+        return new ResponseEntity<>(service.get(id),HttpStatus.OK);
     }
 }

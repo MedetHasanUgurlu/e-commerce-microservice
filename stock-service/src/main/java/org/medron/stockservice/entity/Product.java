@@ -6,8 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
-import java.util.UUID;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,16 +16,14 @@ import java.util.UUID;
 @Table(name = "products")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String name;
     private int stockQuantity;
     private double unitPrice;
     private boolean status;
     private String description;
-
-
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private Set<Category> categories;
+    private List<Category> categories;
 
 }

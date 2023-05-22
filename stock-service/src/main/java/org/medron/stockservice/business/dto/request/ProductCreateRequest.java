@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductCreateRequest implements ProductRequest{
 
-    private List<Category> categories;
+    private List<Long> categories;
     private String name;
     private int stockQuantity;
     private double unitPrice;

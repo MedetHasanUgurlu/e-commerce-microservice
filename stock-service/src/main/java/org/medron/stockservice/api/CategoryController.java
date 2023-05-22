@@ -15,8 +15,8 @@ import java.util.UUID;
 
 public interface CategoryController {
     ResponseEntity<Void> add(CategoryCreateRequest request);
-    ResponseEntity<Void> delete(UUID id);
-    ResponseEntity<Void> update(UUID id, CategoryUpdateRequest request);
+    ResponseEntity<Void> delete(Long id);
+    ResponseEntity<Void> update(Long id, CategoryUpdateRequest request);
     ResponseEntity<List<CategoryGetAllResponse>> getAll();
-    ResponseEntity<CategoryGetResponse> get(UUID id);
+    ResponseEntity<CategoryGetResponse> get(Long id);
 }

@@ -2,7 +2,6 @@ package org.medron.stockservice.business.dto.request;
 
 import lombok.*;
 
-import java.util.UUID;
 
 @Getter
 @Setter

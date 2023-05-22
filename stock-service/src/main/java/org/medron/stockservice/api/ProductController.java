@@ -11,8 +11,8 @@ import java.util.UUID;
 
 public interface ProductController {
     ResponseEntity<Void> add(ProductCreateRequest request);
-    ResponseEntity<Void> delete(UUID id);
-    ResponseEntity<Void> update(UUID id, ProductUpdateRequest request);
+    ResponseEntity<Void> delete(Long id);
+    ResponseEntity<Void> update(Long id, ProductUpdateRequest request);
     ResponseEntity<List<ProductGetAllResponse>> getAll();
-    ResponseEntity<ProductGetResponse> get(UUID id);
+    ResponseEntity<ProductGetResponse> get(Long id);
 }
