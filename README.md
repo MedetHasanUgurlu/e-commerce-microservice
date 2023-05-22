@@ -3,7 +3,5 @@
 
 
 <p align="center">
-    <img src="../e-commerce-microservice/zimage/ed-cowboy-bebop.gif" alt="edward">
+    <img src="zimage/ahsokatano.gif">
 </p>
-
-
