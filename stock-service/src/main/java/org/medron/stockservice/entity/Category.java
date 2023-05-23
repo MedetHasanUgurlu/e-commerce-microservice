@@ -19,6 +19,6 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "categories")
+    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "categories")
     private List<Product> products;
 }

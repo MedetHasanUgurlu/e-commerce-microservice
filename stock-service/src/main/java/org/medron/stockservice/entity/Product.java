@@ -23,7 +23,7 @@ public class Product {
     private double unitPrice;
     private boolean status;
     private String description;
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToMany
     private List<Category> categories;
 
 }

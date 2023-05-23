@@ -21,14 +21,10 @@ F
 dstock-service/src/main/java/org/medron/stockservice/business/dto/response/ProductGetAllResponse.java,b\0\b004336d1b7753732a92f6cf37ef24bb8bfc1102
 ƒ
 Scommon-service/src/main/java/org/medron/commonservice/config/ModelMapperConfig.java,e\b\eb15dcaa92f62cdac620f53f8f1c886ddb5fb84d
-x
-Hstock-service/src/main/java/org/medron/stockservice/entity/Category.java,7\e\7ed95163a0a6e9867fd254c9f1587ff999be8ac3
 €
 Pcommon-service/src/main/java/org/medron/commonservice/constant/PathConstant.java,1\1\11c0c197db3fe382a8489e6a4ec02cc6e73d2304
 ‰
 Ystock-service/src/main/java/org/medron/stockservice/business/service/CategoryService.java,5\e\5e248535e5914685bbe257e4ef80167cef24c873
-†
-Vstock-service/src/main/java/org/medron/stockservice/api/imp/CategoryControllerImp.java,c\d\cd40baafb3404970ed461261cc8a66bc21a0b061
 
 Ostock-service/src/main/java/org/medron/stockservice/api/CategoryController.java,e\1\e17e56ab345563516dd67dbc1ff3792c665765be
 ~

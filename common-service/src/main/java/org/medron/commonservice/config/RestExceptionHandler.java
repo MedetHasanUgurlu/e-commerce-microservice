@@ -29,18 +29,18 @@ public class RestExceptionHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public ExceptionResult<Object> handleBusinessException(BusinessException e){
-        return new ExceptionResult<>(e,ExceptionType.Business);
+        return new ExceptionResult<>(e.getMessage(),ExceptionType.Business);
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ExceptionResult<Object> handleRuntimeException(RuntimeException e){
-        return new ExceptionResult<>(e,ExceptionType.Runtime);
+        return new ExceptionResult<>(e.getMessage(),ExceptionType.Runtime);
     }
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
     public ExceptionResult<Object> handleDataIntegrityViolation(DataIntegrityViolationException e){
-        return new ExceptionResult<>(e,ExceptionType.DataIntegrityViolation);
+        return new ExceptionResult<>(e.getMessage(),ExceptionType.DataIntegrityViolation);
     }
 
 }

@@ -7,8 +7,6 @@ E
 \stock-service/src/main/java/org/medron/stockservice/business/dto/request/ProductRequest.java,3\9\39d5e3776be63bbd4861896ae1452de33fc8e488
 ç
 ]stock-service/src/main/java/org/medron/stockservice/business/dto/request/CategoryRequest.java,0\c\0ca02f42e7f99382b01374e518963a551481f545
-x
-Hstock-service/src/main/java/org/medron/stockservice/entity/Category.java,7\e\7ed95163a0a6e9867fd254c9f1587ff999be8ac3
 ï
 estock-service/src/main/java/org/medron/stockservice/business/dto/response/CategoryGetAllResponse.java,9\e\9e27d5e1c4dca67b42b2768974673148487449df
 í
@@ -27,8 +25,6 @@ dstock-service/src/main/java/org/medron/stockservice/business/dto/response/Produ
 astock-service/src/main/java/org/medron/stockservice/business/dto/response/ProductGetResponse.java,b\4\b4ec87acd970601f9a77d7664fa749665bb59b8e
 í
 bstock-service/src/main/java/org/medron/stockservice/business/dto/request/ProductUpdateRequest.java,3\f\3f425fd4d997bcf6ebef1b80b5e024b342648040
-Ü
-Vstock-service/src/main/java/org/medron/stockservice/api/imp/CategoryControllerImp.java,c\d\cd40baafb3404970ed461261cc8a66bc21a0b061
 
 Ostock-service/src/main/java/org/medron/stockservice/api/CategoryController.java,e\1\e17e56ab345563516dd67dbc1ff3792c665765be
 ~

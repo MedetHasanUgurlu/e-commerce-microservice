@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ProductBusinessRule {
-    private ProductRepository repository;
+    private final ProductRepository repository;
     public void checkEntityExist(Long id){
         if(repository.findById(id).isEmpty()){
             throw new BusinessException(ExceptionMessage.Product.ENTITY_NOT_EXIST);
