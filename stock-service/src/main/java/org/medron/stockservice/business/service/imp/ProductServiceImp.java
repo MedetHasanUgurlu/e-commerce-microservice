@@ -6,6 +6,7 @@ import org.medron.stockservice.business.dto.request.ProductRequest;
 import org.medron.stockservice.business.dto.request.ProductUpdateRequest;
 import org.medron.stockservice.business.dto.response.ProductGetAllResponse;
 import org.medron.stockservice.business.dto.response.ProductGetResponse;
+import org.medron.stockservice.business.rule.ProductBusinessRule;
 import org.medron.stockservice.business.service.ProductService;
 import org.medron.stockservice.entity.Category;
 import org.medron.stockservice.entity.Product;
@@ -21,6 +22,7 @@ public class ProductServiceImp implements ProductService {
     private final ProductRepository repository;
     private final CategoryRepository categoryRepository;
     private final ModelMapper mapper;
+    private final ProductBusinessRule rule;
 
     Product requestToEntity(ProductRequest request){
         return mapper.map(request,Product.class);
@@ -42,17 +44,23 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public void delete(Long id) {
-
+        rule.checkEntityExist(id);
+        repository.deleteById(id);
     }
 
     @Override
     public void update(Long id, ProductUpdateRequest request) {
-
+        rule.checkEntityExist(id);
+        rule.checkName(request.getName());
+        Product product = requestToEntity(request);
+        product.setId(id);
+        repository.save(product);
     }
 
     @Override
     public ProductGetResponse get(Long id) {
-        return null;
+        rule.checkEntityExist(id);
+        return entityToGetResponse(repository.findById(id).orElseThrow());
     }
 
     @Override

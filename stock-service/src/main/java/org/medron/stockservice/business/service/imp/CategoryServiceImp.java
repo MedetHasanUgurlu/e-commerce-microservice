@@ -34,6 +34,7 @@ public class CategoryServiceImp implements CategoryService {
     }
     @Override
     public void add(CategoryCreateRequest request) {
+        rule.checkName(request.getName());
         Category category = requestToEntity(request);
         category.setId(0L);
         repository.save(category);
@@ -41,12 +42,16 @@ public class CategoryServiceImp implements CategoryService {
 
     @Override
     public void delete(Long id) {
+        rule.checkEntityExist(id);
         repository.deleteById(id);
     }
 
     @Override
     public void update(Long id, CategoryUpdateRequest request) {
-
+        rule.checkEntityExist(id);
+        Category category = repository.findById(id).orElseThrow();
+        category.setName(request.getName());
+        repository.save(category);
     }
 
     @Override
