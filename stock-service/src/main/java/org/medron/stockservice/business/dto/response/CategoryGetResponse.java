@@ -2,10 +2,8 @@ package org.medron.stockservice.business.dto.response;
 
 
 import lombok.*;
-import org.medron.stockservice.entity.Product;
 
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,6 +13,7 @@ import java.util.UUID;
 public class CategoryGetResponse {
     private Long id;
     private String name;
-    private List<Product> products;
+    private List<Long> products;
+
 
 }

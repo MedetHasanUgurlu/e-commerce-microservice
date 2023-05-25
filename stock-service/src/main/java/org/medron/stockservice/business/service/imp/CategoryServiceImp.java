@@ -63,4 +63,5 @@ public class CategoryServiceImp implements CategoryService {
     public List<CategoryGetAllResponse> getAll() {
         return repository.findAll().stream().map(this::entityToGetAllResponse).toList();
     }
+
 }

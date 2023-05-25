@@ -1,7 +1,6 @@
 package org.medron.stockservice.business.dto.request;
 
 import lombok.*;
-import org.medron.stockservice.entity.Category;
 import java.util.List;
 
 @Getter

@@ -60,11 +60,17 @@ public class ProductServiceImp implements ProductService {
     @Override
     public ProductGetResponse get(Long id) {
         rule.checkEntityExist(id);
-        return entityToGetResponse(repository.findById(id).orElseThrow());
+        ProductGetResponse response = entityToGetResponse(repository.findById(id).orElseThrow());
+        response.setCategoryId(repository.findById(id).orElseThrow().getCategories());
+        return response;
     }
 
     @Override
     public List<ProductGetAllResponse> getAll() {
-        return repository.findAll().stream().map(this::entityToGetAllResponse).toList();
+        return repository.findAll().stream().map(product -> {
+           ProductGetAllResponse response = entityToGetAllResponse(product);
+           response.setCategoriesName(product.getCategories().stream().map(Category::getName).toList());
+           return response;
+        }).toList();
     }
 }

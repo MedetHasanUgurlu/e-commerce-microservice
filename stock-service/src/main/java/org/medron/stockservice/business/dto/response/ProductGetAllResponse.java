@@ -2,7 +2,7 @@ package org.medron.stockservice.business.dto.response;
 
 import lombok.*;
 
-import java.util.UUID;
+import java.util.List;
 @Getter
 @Setter
 @Builder
@@ -15,4 +15,5 @@ public class ProductGetAllResponse {
     private double unitPrice;
     private boolean status;
     private String description;
+    private List<String> categoriesName;
 }
