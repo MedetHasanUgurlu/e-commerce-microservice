@@ -1,7 +1,8 @@
 package org.medron.stockservice.business.service;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.kafka.clients.producer.KafkaProducer;
+import org.medron.commonservice.kafka.KafkaProducer;
+import org.medron.commonservice.kafka.event.stock.ProductCreateEvent;
 import org.medron.stockservice.business.dto.request.ProductCreateRequest;
 import org.medron.stockservice.business.dto.request.ProductRequest;
 import org.medron.stockservice.business.dto.request.ProductUpdateRequest;
@@ -23,7 +24,7 @@ public class ProductServiceImp implements ProductService {
     private final CategoryRepository categoryRepository;
     private final ModelMapper mapper;
     private final ProductBusinessRule rule;
-    private final KafkaProducer
+    private final KafkaProducer kafkaProducer;
 
     Product requestToEntity(ProductRequest request){
         return mapper.map(request,Product.class);
@@ -41,6 +42,7 @@ public class ProductServiceImp implements ProductService {
         product.setCategories(categories);
         product.setId(0L);
         repository.save(product);
+        productCreateSendKafka(product);
     }
 
     @Override
@@ -73,5 +75,16 @@ public class ProductServiceImp implements ProductService {
            response.setCategoriesName(product.getCategories().stream().map(Category::getName).toList());
            return response;
         }).toList();
+    }
+
+
+    private void productCreateSendKafka(Product product){
+        ProductCreateEvent event = mapper.map(product,ProductCreateEvent.class);
+        event.setProductId(product.getId().toString());
+        event.setCategoriesName(product.getCategories().stream().map(Category::getName).toList());
+        kafkaProducer.send(event,"topic-product-create");
+    }
+    private void productUpdateSendKafka(Product product){
+
     }
 }

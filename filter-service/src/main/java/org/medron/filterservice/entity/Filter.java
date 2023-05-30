@@ -18,7 +18,6 @@ public class Filter {
     @Id
     private String id;
     private String productId;
-    private String categoryId;
     private String name;
     private int stockQuantity;
     private double unitPrice;
