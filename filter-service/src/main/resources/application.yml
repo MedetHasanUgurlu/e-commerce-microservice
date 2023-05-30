@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: filter-service
+  cloud:
+    config:
+      profile: prod
+  config:
+    import: configserver:http://localhost:8888

@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        default-label: main
+        git:
+          uri: https://github.com/MedetHasanUgurlu/e-commerce-microservice-confighub
+server:
+  port: 8888

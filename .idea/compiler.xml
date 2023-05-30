@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="stock-service" />
         <module name="api-gateway" />
+        <module name="config-server" />
         <module name="filter-service" />
         <module name="common-service" />
         <module name="service-registry" />
@@ -19,6 +20,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
       <module name="common-service" options="-parameters" />
+      <module name="config-server" options="-parameters" />
       <module name="filter-service" options="-parameters" />
       <module name="service-registry" options="-parameters" />
       <module name="stock-service" options="-parameters" />
