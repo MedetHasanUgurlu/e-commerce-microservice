@@ -6,6 +6,7 @@ import org.medron.filterservice.business.dto.FilterGetResponse;
 import org.medron.filterservice.business.rules.FilterBusinessRule;
 import org.medron.filterservice.entity.Filter;
 import org.medron.filterservice.repository.FilterRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.UUID;
 public class FilterServiceImp implements FilterService{
     private final FilterRepository repository;
     private final FilterBusinessRule rule;
+    private final ModelMapper mapper;
     @Override
     public void add(Filter filter) {
         rule.checkProductExist(filter.getProductId());
@@ -24,26 +26,26 @@ public class FilterServiceImp implements FilterService{
 
     @Override
     public List<FilterGetAllResponse> getAll() {
-        return null;
+        return repository.findAll().stream().map(filter -> mapper.map(filter, FilterGetAllResponse.class)).toList();
     }
 
     @Override
-    public List<FilterGetResponse> get(String id) {
-        return null;
+    public FilterGetResponse get(String id) {
+        return mapper.map(repository.findById(id).orElseThrow(), FilterGetResponse.class);
     }
 
     @Override
     public void removeAllCategoryName(String categoryName) {
-
+        repository.deleteAllByCategoriesNameContainsIgnoreCase(categoryName);
     }
 
     @Override
-    public void removeProduct(String productName) {
-
+    public void removeProduct(String productId) {
+        repository.deleteFilterByProductId(productId);
     }
 
     @Override
     public void removeFilter(String id) {
-
+        repository.deleteById(id);
     }
 }

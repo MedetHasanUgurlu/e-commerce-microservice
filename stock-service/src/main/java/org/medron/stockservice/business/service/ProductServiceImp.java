@@ -3,6 +3,8 @@ package org.medron.stockservice.business.service;
 import lombok.RequiredArgsConstructor;
 import org.medron.commonservice.kafka.KafkaProducer;
 import org.medron.commonservice.kafka.event.stock.ProductCreateEvent;
+import org.medron.commonservice.kafka.event.stock.ProductDeleteEvent;
+import org.medron.commonservice.kafka.event.stock.ProductUpdateEvent;
 import org.medron.stockservice.business.dto.request.ProductCreateRequest;
 import org.medron.stockservice.business.dto.request.ProductRequest;
 import org.medron.stockservice.business.dto.request.ProductUpdateRequest;
@@ -49,6 +51,7 @@ public class ProductServiceImp implements ProductService {
     public void delete(Long id) {
         rule.checkEntityExist(id);
         repository.deleteById(id);
+        productDeleteSendKafka(id.toString());
     }
 
     @Override
@@ -85,6 +88,19 @@ public class ProductServiceImp implements ProductService {
         kafkaProducer.send(event,"topic-product-create");
     }
     private void productUpdateSendKafka(Product product){
-
+        ProductUpdateEvent event = mapper.map(product,ProductUpdateEvent.class);
+        event.setProductId(product.getId().toString());
+        kafkaProducer.send(event,"topic-product-update");
     }
+    private void productDeleteSendKafka(String productId){
+        kafkaProducer.send(new ProductDeleteEvent(productId),"topic-product-delete");
+    }
+
+
+    /*
+    topic-product-create
+    topic-product-update
+    topic-product-delete
+     */
+
 }

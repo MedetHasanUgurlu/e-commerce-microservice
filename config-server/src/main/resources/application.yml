@@ -7,5 +7,6 @@ spring:
         default-label: main
         git:
           uri: https://github.com/MedetHasanUgurlu/e-commerce-microservice-confighub
+          force-pull: true
 server:
   port: 8888

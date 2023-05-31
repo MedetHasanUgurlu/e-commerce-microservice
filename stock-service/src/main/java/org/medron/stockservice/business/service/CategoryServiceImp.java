@@ -1,13 +1,14 @@
 package org.medron.stockservice.business.service;
 
 import lombok.RequiredArgsConstructor;
+import org.medron.commonservice.kafka.KafkaProducer;
+import org.medron.commonservice.kafka.event.stock.CategoryDeleteEvent;
 import org.medron.stockservice.business.dto.request.CategoryCreateRequest;
 import org.medron.stockservice.business.dto.request.CategoryRequest;
 import org.medron.stockservice.business.dto.request.CategoryUpdateRequest;
 import org.medron.stockservice.business.dto.response.CategoryGetAllResponse;
 import org.medron.stockservice.business.dto.response.CategoryGetResponse;
 import org.medron.stockservice.business.rule.CategoryBusinessRule;
-import org.medron.stockservice.business.service.CategoryService;
 import org.medron.stockservice.entity.Category;
 import org.medron.stockservice.repository.CategoryRepository;
 import org.modelmapper.ModelMapper;
@@ -21,6 +22,7 @@ public class CategoryServiceImp implements CategoryService {
     private final CategoryRepository repository;
     private final CategoryBusinessRule rule;
     private final ModelMapper mapper;
+    private final KafkaProducer kafkaProducer;
 
     public Category requestToEntity(CategoryRequest request){
         return mapper.map(request,Category.class);
@@ -44,6 +46,7 @@ public class CategoryServiceImp implements CategoryService {
     public void delete(Long id) {
         rule.checkEntityExist(id);
         repository.deleteById(id);
+        categoryDeleteSendKafka(id.toString());
     }
 
     @Override
@@ -62,6 +65,10 @@ public class CategoryServiceImp implements CategoryService {
     @Override
     public List<CategoryGetAllResponse> getAll() {
         return repository.findAll().stream().map(this::entityToGetAllResponse).toList();
+    }
+
+    private void categoryDeleteSendKafka(String categoryId){
+        kafkaProducer.send(new CategoryDeleteEvent(categoryId),"topic-category-delete");
     }
 
 }

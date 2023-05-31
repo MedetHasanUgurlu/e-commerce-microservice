@@ -7,8 +7,8 @@ import java.util.List;
 public interface FilterService {
     void add(Filter filter);
     List<FilterGetAllResponse> getAll();
-    List<FilterGetResponse> get(String id);
+    FilterGetResponse get(String id);
     void removeAllCategoryName(String categoryName);
-    void removeProduct(String productName);
+    void removeProduct(String productId);
     void removeFilter(String id);
 }
