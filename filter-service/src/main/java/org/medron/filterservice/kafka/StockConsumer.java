@@ -26,6 +26,8 @@ public class StockConsumer {
     public void consume(ProductCreateEvent event){
         Filter filter = mapper.map(event,Filter.class);
         filter.setId(UUID.randomUUID().toString());
+        filter.setCategoriesName(event.getCategoriesName());
+        filter.setProductId(event.getProductId());
         service.add(filter);
         log.info("<==== TOPIC-PRODUCT-CREATE ====>");
     }
